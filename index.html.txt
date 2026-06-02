@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estancia - Casa 23</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-deep: #0B192C;
+            --gold-luxury: #C5A059;
+            --sand-bg: #F9F7F1;
+            --white: #FFFFFF;
+            --slate-text: #334155;
+            --alert-bg: #FFFBEB;
+            --alert-border: #D97706;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body { 
+            background-color: var(--sand-bg); 
+            color: var(--slate-text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* BANNER PRINCIPAL (Estilo Minimalista Elegante sin imágenes rotas) */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, #1E3E62 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 20px rgba(11,25,44,0.15);
+            position: relative;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .hero-banner p {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-luxury);
+            font-weight: 500;
+        }
+
+        .main-wrapper {
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* SECCIÓN DE BIENVENIDA */
+        .welcome-box {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: -35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border: 1px solid rgba(197,160,89,0.15);
+        }
+
+        .welcome-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy-deep);
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .welcome-box p {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        /* ACCESOS RÁPIDOS */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .quick-item {
+            background: var(--white);
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .quick-item i {
+            font-size: 20px;
+            color: var(--gold-luxury);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .quick-item span {
+            display: block;
+            font-size: 11px;
+            color: #64748B;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .quick-item strong {
+            font-size: 16px;
+            color: var(--navy-deep);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* ACORDEONES INTERACTIVOS */
+        .accordion-card {
+            background: var(--white);
+            margin-bottom: 14px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .accordion-card input[type="checkbox"] {
+            display: none;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--navy-deep);
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .accordion-header .title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-header i.icon-main {
+            color: var(--gold-luxury);
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .accordion-header::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #94A3B8;
+            transition: transform 0.3s;
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            background: #FAFAFB;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        /* LÓGICA DE APERTURA */
+        .accordion-card input:checked ~ .accordion-body {
+            max-height: 2500px;
+            padding: 20px;
+            border-top: 1px solid #F1F5F9;
+        }
+
+        .accordion-card input:checked ~ .accordion-header::after {
+            transform: rotate(-180deg);
+            color: var(--gold-luxury);
+        }
+
+        /* ESTILOS INTERNOS DE CONTENIDO */
+        .warning-card {
+            background-color: var(--alert-bg);
+            border-left: 4px solid var(--alert-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13.5px;
+        }
+
+        .wifi-box {
+            background: #F1F5F9;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            margin: 10px 0;
+            border: 1px dashed #CBD5E1;
+            font-size: 14px;
+        }
+
+        .sub-list {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .sub-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .sub-list li::before {
+            content: "•";
+            color: var(--gold-luxury);
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: 5px;
+            top: -2px;
+        }
+
+        .place-row {
+            padding: 12px 0;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+        .place-row:last-child { border: none; }
+        .place-tag { font-weight: 700; color: var(--navy-deep); }
+
+        /* BOTONES DE MAPA */
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* BOTÓN FLOTANTE DIRECTO WHATSAPP */
+        .footer-action {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 460px;
+            z-index: 999;
+        }
+
+        .btn-wa-direct {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: var(--white);
+            padding: 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 8px 20px rgba(37,211,102,0.35);
+        }
+
+        .signature {
+            text-align: center;
+            margin: 30px 0 40px 0;
+            font-size: 12px;
+            color: #94A3B8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner">
+        <h1>Casa 23 Santa Barbara</h1>
+        <p>Brisas del Pacífico • Cabo San Lucas</p>
+    </div>
+
+    <div class="main-wrapper">
+
+        <div class="welcome-box">
+            <h2>¡Hola! 👋</h2>
+            <p>Te damos la más cordial bienvenida. En esta guía encontrarás toda la información necesaria para disfrutar al máximo tanto de la casa como de Cabo.</p>
+            <p style="margin-top: 12px; font-style: italic; font-size: 13.5px; color: #64748B;">"Ponte cómodo, explora y comienza a disfrutar. Estamos a un mensaje de distancia."</p>
+        </div>
+
+        <div class="quick-grid">
+            <div class="quick-item">
+                <i class="fa-solid fa-key"></i>
+                <span>Código Chapa</span>
+                <strong>8201</strong>
+            </div>
+            <div class="quick-item">
+                <i class="fa-solid fa-door-open"></i>
+                <span>Check-Out</span>
+                <strong>11:00 AM</strong>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c1">
+            <label class="accordion-header" for="c1">
+                <div class="title-group">
+                    <i class="fa-solid fa-map-location-dot icon-main"></i>
+                    <span>📍 Información Clave</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <p><strong>Dirección:</strong> Calle Turrucares Casa 23, Santa Barbara Col. Brisas del Pacifico, Cabo San Lucas, Baja California Sur, C.P. 23454.</p>
+                <a href="https://maps.google.com/?q=Calle+Turrucares+Casa+23+Santa+Barbara+Cabo+San+Lucas" class="map-link" target="_blank">
+                    <i class="fa-solid fa-location-arrow"></i> Abrir en Google Maps
+                </a>
+                <br><br>
+                <p><strong>Conexión Wi-Fi de la Casa:</strong></p>
+                <div class="wifi-box">
+                    <strong>Red:</strong> CasaSB23<br>
+                    <strong>Clave:</strong> z27PpgNUka
+                </div>
+                <p style="font-size: 12px; color: #64748B;">💡 Tip: Copia y pega la clave directamente desde este cuadro.</p>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c2">
+            <label class="accordion-header" for="c2">
+                <div class="title-group">
+                    <i class="fa-solid fa-house-laptop icon-main"></i>
+                    <span>🏠 Detalles sobre la Casa</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <div class="warning-card">
+                    <strong>⚠️ El Agua (¡Vital en Cabo!):</strong><br>
+                    El agua en Cabo San Lucas llega de la calle únicamente una vez al mes. Es un recurso sumamente escaso. Por favor, sé muy consciente en las duchas y al lavar platos. Si llega a faltar flujo, contamos con un tanque de reserva de 2,500 litros ubicado en la cochera trasera.
+                </div>
+                <p><strong>🧹 Ama de llaves (Mary):</strong></p>
+                <p>Mary nos ha apoyado con total confianza por más de 14 años. Asiste los días <strong>Lunes, Miércoles y Viernes</strong>. Su labor principal incluye la limpieza general de la planta baja y el lavado de trastes acumulados. (No incluye cocina profunda ni lavandería personal).</p>
+                <br>
+                <p><strong>🔥 Alberca y Calefacción:</strong></p>
+                <p>La calefacción de la piscina opera mediante encendido manual. Te pedimos amablemente apagarla una vez que el agua alcance la temperatura ideal para tu comodidad.</p>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c3">
+            <label class="accordion-header" for="c3">
+                <div class="title-group">
+                    <i class="fa-solid fa-gears icon-main"></i>
+                    <span>⚙️ Equipamiento de la Casa</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <ul class="sub-list">
+                    <li><strong>Aires Acondicionados:</strong> Mantén cerradas las puertas exteriores mientras estén encendidos y por favor apágalos por completo cada vez que salgas de la propiedad.</li>
+                    <li><strong>Agua Caliente:</strong> El sistema es automático. La ducha de la recámara principal puede demorar cerca de 2 minutos en regular su temperatura ideal.</li>
+                    <li><strong>Sistemas de TV:</strong> Cuentas con pantallas inteligentes. La televisión de la planta alta tiene configurado el sistema POP TV.</li>
+                    <li><strong>Uso de la Cocina:</strong> La parrilla de inducción cuenta con un sistema de bloqueo para niños. El horno de microondas requiere un espacio de reposo de 3 minutos entre usos prolongados para evitar sobrecalentamientos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c4">
+            <label class="accordion-header" for="c4">
+                <div class="title-group">
+                    <i class="fa-solid fa-scale-balanced icon-main"></i>
+                    <span>📜 Normas de la Casa</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <ul class="sub-list">
+                    <li>🚭 Prohibido estrictamente fumar en cualquiera de las áreas interiores de la casa.</li>
+                    <li>🔇 <strong>Horario de silencio estricto:</strong> A partir de las 9:00 PM para mantener una sana convivencia con la privada.</li>
+                    <li>💧 Cuidado absoluto de los consumos de agua y energía eléctrica.</li>
+                    <li>🛋️ Respetar y cuidar el mobiliario, decoraciones y artículos de uso personal de la villa.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c5">
+            <label class="accordion-header" for="c5">
+                <div class="title-group">
+                    <i class="fa-solid fa-umbrella-beach icon-main"></i>
+                    <span>🌴 Lugares para Visitar</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <h3 style="color: var(--navy-deep); font-size: 15px; margin-bottom: 8px;"><i class="fa-solid fa-water"></i> Playas Imperdibles:</h3>
+                <div class="place-row">
+                    <span class="place-tag">Playa El Médano:</span>
+                    <p>La más activa y famosa de Cabo. Ideal para actividades acuáticas, restaurantes y clubs de playa. Permitido el acceso a mascotas con correa.</p>
+                </div>
+                <div class="place-row">
+                    <span class="place-tag">Playa Chileno y Playa Santa María:</span>
+                    <p>Ambas cuentan con la prestigiosa certificación internacional Blue Flag. Son los destinos idóneos y más limpios para practicar Snorkel y natación segura. (No se admiten mascotas).</p>
+                </div>
+
+                <h3 style="color: var(--navy-deep); font-size: 15px; margin: 15px 0 8px 0;"><i class="fa-solid fa-utensils"></i> Recomendaciones Gastronómicas:</h3>
+                <ul class="sub-list">
+                    <li><strong>Comida Japonesa:</strong> Nick San (Cocina fusión de alta gama) o Koi Sushi (Una excelente y práctica opción ubicada junto a Walmart).</li>
+                    <li><strong>Tacos Locales:</strong> Tacos El Paisa (El favorito de la comunidad local, situado rumbo a Av. Leona Vicario).</li>
+                    <li><strong>Vistas Inolvidables:</strong> Sunset Monalisa (Perfecto para cenas románticas con vista espectacular directamente al Arco de Cabo San Lucas).</li>
+                    <li><strong>Paseo en San José:</strong> La Lupita Taco & Mezcal (Exquisitos tacos gourmet acompañados de música en vivo).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c6">
+            <label class="accordion-header" for="c6">
+                <div class="title-group">
+                    <i class="fa-solid fa-clipboard-check icon-main"></i>
+                    <span>🏁 Checklist de Salida</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <p>Te solicitamos de la manera más atenta cumplir con los siguientes puntos antes del check-out:</p>
+                <br>
+                <ol style="padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Apagar equipos:</strong> Verifica apagar todas las luces, aires acondicionados, ventiladores y la calefacción de la alberca.</li>
+                    <li style="margin-bottom: 8px;"><strong>Toallas:</strong> Deja las toallas utilizadas directamente en el suelo del cuarto de baño o dentro de la canasta de lavado.</li>
+                    <li style="margin-bottom: 8px;"><strong>Gestión de Basura:</strong> Retira la basura acumulada dentro de la propiedad y colócala en el contenedor de basura exterior del complejo.</li>
+                    <li style="margin-bottom: 8px;"><strong>Seguridad:</strong> Revisa minuciosamente que todas las ventanas y puertas de acceso queden perfectamente cerradas con seguro.</li>
+                    <li style="margin-bottom: 8px;"><strong>Aviso de Salida:</strong> Envíanos un mensaje rápido por WhatsApp para confirmar que has dejado la propiedad y desearte un excelente viaje de regreso.</li>
+                </ol>
+                <div class="warning-card" style="background: #F1F5F9; border-left: 4px solid #64748B; margin-top: 15px;">
+                    <strong>¿Late Check-out?:</strong> Intentamos ser totalmente flexibles con los horarios. Para gestionarlo, por favor escríbenos un día antes de tu salida para revisar la disponibilidad del calendario.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-card">
+            <input type="checkbox" id="c7">
+            <label class="accordion-header" for="c7">
+                <div class="title-group">
+                    <i class="fa-solid fa-phone-volume icon-main"></i>
+                    <span>📞 Contactos e Emergencias</span>
+                </div>
+            </label>
+            <div class="accordion-body">
+                <p>🟢 <strong>Luis Aguilar (Propietario):</strong> +52 624 157-4806</p>
+                <p>👨‍💼 <strong>Iván Santana (Gerencia Local):</strong> 624 183 1140</p>
+                <p>🚕 <strong>Servicio de Taxi Directo:</strong> 624 146 30 39</p>
+                <p>🚨 <strong>Línea Nacional de Emergencia:</strong> 911</p>
+                <br>
+                <p style="font-size: 13px; color: #64748B;">*Nota del Anfitrión: Radico en la ciudad de Guadalajara, Jalisco, sin embargo, nuestro equipo local de administración en Cabo está listo para asistirte presencialmente ante cualquier eventualidad.</p>
+            </div>
+        </div>
+
+        <div class="signature">
+            <p>Una vez más, queremos expresar nuestro más sincero agradecimiento por elegir nuestra casa para tu alojamiento. Estamos emocionados de tener la oportunidad de brindarte una experiencia excepcional y estamos aquí para ayudarte en todo momento.</p>
+            <p style="margin-top: 10px;">Esperamos que disfrutes de tu estadía y te sientas como en casa.</p>
+            <p style="margin-top: 20px; font-weight: bold; color: var(--navy-deep); font-size: 14px;">Atentamente,<br><span style="color: var(--gold-luxury)">Luis Aguilar</span></p>
+        </div>
+
+        <div class="footer-action">
+            <a href="https://wa.me/526241574806?text=Hola%20Luis,%20estoy%20en%20la%20Casa%2023%20de%20Santa%20Barbara%20y%20requiero%20asistencia." class="btn-wa-direct" target="_blank">
+                <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Contactar Soporte (WhatsApp)
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
